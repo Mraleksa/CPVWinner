@@ -2,8 +2,7 @@
   "version": "0.0.1",
   "main": "scraper.js",
   "dependencies": {
-    "cheerio": "latest",
-    "request": "latest",
+    "http-api-client": "latest",
     "sqlite3": "latest"
   },
   "keywords": [
