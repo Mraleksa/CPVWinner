@@ -24,10 +24,10 @@ client.request({url: 'https://public.api.openprocurement.org/api/2.3/contracts?o
 					
 var description = data.getJSON().data.items[0].description.toLowerCase();					
 db.serialize(function() {
-db.run("CREATE TABLE IF NOT EXISTS data (dateModified TEXT,description TEXT,cpv TEXT,name TEXT,contactPoint TEXT,contractID TEXT)");
-var statement = db.prepare("INSERT INTO data VALUES (?,?,?,?,?,?)");
+db.run("CREATE TABLE IF NOT EXISTS data (dateModified TEXT,description TEXT,cpv TEXT,winner TEXT,winnerEdr TEXT,value INT,contactPoint TEXT,contractID TEXT)");
+var statement = db.prepare("INSERT INTO data VALUES (?,?,?,?,?,?,?,?)");
 statement.run(item.dateModified,description,data.getJSON().data.items[0].classification.id,
-data.getJSON().data.suppliers[0].name,data.getJSON().data.suppliers[0].contactPoint.email,data.getJSON().data.contractID);
+data.getJSON().data.suppliers[0].name,data.getJSON().data.suppliers[0].identifier.id,data.getJSON().data.value.amount,data.getJSON().data.suppliers[0].contactPoint.email,data.getJSON().data.contractID);
 statement.finalize();
 });
 			
