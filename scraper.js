@@ -28,7 +28,7 @@ db.serialize(function() {
 db.run("CREATE TABLE IF NOT EXISTS data (dateModified TEXT,procurementMethod TEXT)");
 var statement = db.prepare("INSERT INTO data VALUES (?,?)");
 
-statement.run(item.dateModified,data.getJSON().procurementMethod);
+statement.run(item.dateModified,data.getJSON().data.procurementMethod);
 
 statement.finalize();
 });
