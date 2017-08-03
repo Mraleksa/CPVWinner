@@ -41,7 +41,7 @@ statement.finalize();
 				});
 		
 		})
-		*/
+		
 		.then(function () {	
 		if (p<3){piv ();}		
 		else {
