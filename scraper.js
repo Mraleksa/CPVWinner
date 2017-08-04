@@ -10,7 +10,7 @@ var p=0; var p2=0;
  
 function piv(){  
 p++;
-client.request({url: 'https://public.api.openprocurement.org/api/2.3/tenders?offset='+currentCount})
+/*client.request({url: 'https://public.api.openprocurement.org/api/2.3/tenders?offset='+currentCount})
 		.then(function (data) {
 			var dataset = data.getJSON().data;			
 			currentCount = data.getJSON().next_page.offset;			
@@ -20,20 +20,31 @@ client.request({url: 'https://public.api.openprocurement.org/api/2.3/tenders?off
 
 		.then(function (dataset) {			
 			dataset.forEach(function(item) {
-				client.request({url: 'https://public.api.openprocurement.org/api/2.3/tenders/'+item.id})
+			*/	
+			//client.request({url: 'https://public.api.openprocurement.org/api/2.3/tenders/'+item.id})
+			client.request({url: 'https://public.api.openprocurement.org/api/2.3/tenders/f5fc672c3d034d1bbee42e8bfca41e4b'})
 					.then(function (data) {
 					
-					
-db.serialize(function() {
-db.run("CREATE TABLE IF NOT EXISTS data (dateModified TEXT,procurementMethod TEXT)");
-var statement = db.prepare("INSERT INTO data VALUES (?,?)");
+	
+//1. Закупівлі з дискваліфікаціями всіх учасників, крім останнього
+//var disqualification = ;
 
-statement.run(item.dateModified,data.getJSON().data.procurementMethod);
+
+var lots = data.getJSON().data.lots.length
+console.log(lots)
+
+db.serialize(function() {
+db.run("CREATE TABLE IF NOT EXISTS data (dateModified TEXT,procurementMethod TEXT,numberOfBids INT)");
+var statement = db.prepare("INSERT INTO data VALUES (?,?,?)");
+
+statement.run(item.dateModified,data.getJSON().data.procurementMethod,data.getJSON().data.numberOfBids);
 
 statement.finalize();
 });
+	
 			
 					})
+					/*
 					.catch(function  (error) {
 						console.log("error_detale")
 						
@@ -41,7 +52,7 @@ statement.finalize();
 				});
 		
 		})
-		
+		*/
 		.then(function () {	
 		if (p<3){piv ();}		
 		else {
