@@ -27,12 +27,25 @@ p++;
 					
 	
 //1. Закупівлі з дискваліфікаціями всіх учасників, крім останнього
-//var disqualification = ;
+var awards = data.getJSON().data.awards;
+var awardsLength = data.getJSON().data.awards.length;
+console.log(awards)
+console.log(awardsLength)
 
-
-var lots = data.getJSON().data.lots.length
-console.log(lots)
-
+var disqualification;
+	for (var p = 0; p < awardsLength; p++) {
+			//t = t + item.values[p].value.count;
+		if(awards[p].status=="unsuccessful"&&awards[awardsLength-1].status=="active"){
+			disqualification = "yes";
+		}
+		else (awards[p].status=="unsuccessful"&&awards[awardsLength-1].status=="active"){
+			disqualification = "no";
+		}
+	}
+//Закупівлі з дискваліфікаціями всіх учасників, крім останнього	
+				
+			
+			
 db.serialize(function() {
 db.run("CREATE TABLE IF NOT EXISTS data (dateModified TEXT,procurementMethod TEXT,numberOfBids INT)");
 var statement = db.prepare("INSERT INTO data VALUES (?,?,?)");
