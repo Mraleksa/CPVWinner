@@ -31,7 +31,7 @@ var awards = data.getJSON().data.awards;
 var awardsLength = data.getJSON().data.awards.length;
 console.log(awards)
 console.log(awardsLength)
-
+/*
 var disqualification;
 	for (var p = 0; p < awardsLength; p++) {
 			//t = t + item.values[p].value.count;
@@ -43,6 +43,7 @@ var disqualification;
 		}
 	}
 	console.log(disqualification)
+	*/
 //Закупівлі з дискваліфікаціями всіх учасників, крім останнього	
 				
 			
