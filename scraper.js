@@ -38,7 +38,7 @@ var disqualification;
 		if(awards[p].status=="unsuccessful"&&awards[awardsLength-1].status=="active"){
 			disqualification = "yes";
 		}
-		else (awards[p].status=="unsuccessful"&&awards[awardsLength-1].status=="active"){
+		else {
 			disqualification = "no";
 		}
 	}
