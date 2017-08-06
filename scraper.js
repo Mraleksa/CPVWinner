@@ -42,6 +42,8 @@ var disqualification;
 			disqualification = "no";
 		}
 	}
+console.log(disqualification)
+				
 //Закупівлі з дискваліфікаціями всіх учасників, крім останнього	
 				
 			
